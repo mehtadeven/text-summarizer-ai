@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="170" viewBox="0 0 1200 170">
+<rect width="1200" height="170" fill="#1e293b"/>
+<rect x="40" y="45" width="250" height="80" rx="12" fill="#0f172a" stroke="#ef4444" stroke-width="2"/>
+<text x="165.0" y="92" font-family="Segoe UI, Arial, sans-serif" font-size="19" font-weight="600" fill="#ffffff" text-anchor="middle">Article</text>
+<text x="310" y="95" font-family="Arial" font-size="26" fill="#ef4444" text-anchor="middle">→</text>
+<rect x="330" y="45" width="250" height="80" rx="12" fill="#0f172a" stroke="#ef4444" stroke-width="2"/>
+<text x="455.0" y="92" font-family="Segoe UI, Arial, sans-serif" font-size="19" font-weight="600" fill="#ffffff" text-anchor="middle">Sentences</text>
+<text x="600" y="95" font-family="Arial" font-size="26" fill="#ef4444" text-anchor="middle">→</text>
+<rect x="620" y="45" width="250" height="80" rx="12" fill="#0f172a" stroke="#ef4444" stroke-width="2"/>
+<text x="745.0" y="92" font-family="Segoe UI, Arial, sans-serif" font-size="19" font-weight="600" fill="#ffffff" text-anchor="middle">TF-IDF Scoring</text>
+<text x="890" y="95" font-family="Arial" font-size="26" fill="#ef4444" text-anchor="middle">→</text>
+<rect x="910" y="45" width="250" height="80" rx="12" fill="#0f172a" stroke="#ef4444" stroke-width="2"/>
+<text x="1035.0" y="92" font-family="Segoe UI, Arial, sans-serif" font-size="19" font-weight="600" fill="#ffffff" text-anchor="middle">Top 3 Summary</text>
+</svg>

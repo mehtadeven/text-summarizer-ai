@@ -1,45 +1,47 @@
-# 📝 Text Summarizer AI
+![Text Summarizer AI](assets/banner.svg)
 
+# Text Summarizer AI
 
-![Banner](assets/banner.svg)
-![Python](https://img.shields.io/badge/Python-3.10+-blue) ![scikit-learn](https://img.shields.io/badge/scikit--learn-ML-orange) ![NLP](https://img.shields.io/badge/area-NLP-purple) ![Status](https://img.shields.io/badge/status-working-brightgreen)
+![Python](https://img.shields.io/badge/Python-3.10+-3776AB?logo=python&logoColor=white) ![NLP](https://img.shields.io/badge/Area-NLP-purple) ![scikit-learn](https://img.shields.io/badge/scikit--learn-ML-F7931E?logo=scikitlearn&logoColor=white)
 
-Paste in a long article, get back its **3 most important sentences** — an extractive summarizer built with TF-IDF, no neural network and no API key needed.
+An **extractive summarizer**: paste a long article and receive its most important sentences, verbatim and in reading order. No neural network, no API key — just well-applied TF-IDF.
 
-## 📄 Sample output
+## Sample output
 
-Input: a 12-sentence article about learning AI. Output:
+Input: a 12-sentence article on learning AI. Output:
 
 > - Instead of only reading textbooks, students can now build small projects that solve real problems.
 > - Each project looks simple, but together they teach the core ideas of machine learning: data, features, models, and evaluation.
 > - The best way to learn AI is not to watch videos about it, but to build with it.
 
-## ⚙️ How it works
+## How it works
 
-1. Split the text into sentences
-2. Score every word with **TF-IDF** — rare, meaningful words weigh more than "the" and "is"
-3. Each sentence's score = the sum of its word scores
-4. Return the top sentences **in their original order**, so the summary still reads naturally
+![Pipeline](assets/flow.svg)
 
-## 🚀 Run it
+Sentences are scored by the summed TF-IDF weight of their words: sentences dense in rare, meaningful terms outrank filler. The top three are then restored to their original order so the summary reads naturally. During development, three scoring variants were benchmarked; a length-penalised variant consistently selected the weakest sentences, so the straightforward total score — verified against the sample — is what ships.
+
+## Quick start
 
 ```bash
 pip install -r requirements.txt
-python summarize.py            # summarises the built-in sample article
-python summarize.py my.txt     # summarises your own text file
+python summarize.py            # summarise the built-in sample article
+python summarize.py my.txt     # summarise any text file
 ```
 
-## 🧠 What I learned
+## What this project demonstrates
 
-- Extractive vs abstractive summarization (picking sentences vs writing new ones)
-- How TF-IDF quietly powers search, recommendations, and chatbots too
-- Testing scoring variants: my first version over-penalised long sentences and picked the weakest ones — the simple total score won
+- Extractive vs abstractive summarization
+- TF-IDF as a reusable relevance signal (search, recommenders, chatbots)
+- Empirical scoring choices: variants tested, not guessed
 
-## 🔮 Next steps
+## Roadmap
 
-- [ ] Let the user choose the summary length
-- [ ] Add TextRank (graph-based) scoring and compare
-- [ ] Build a paste-and-summarise web page
+- Configurable summary length
+- TextRank (graph-based) scoring comparison
+- Paste-and-summarise web page
 
 ---
-Built by [Mehta Deven](https://github.com/mehtadeven) — IT student learning ML/AI in public.
+
+**Author:** [Mehta Deven](https://github.com/mehtadeven) — IT student at SAL College of Engineering, Ahmedabad, building a public portfolio in Python, Machine Learning and AI.
+**Portfolio:** [mehtadeven.github.io/portfolio](https://mehtadeven.github.io/portfolio/)
+
