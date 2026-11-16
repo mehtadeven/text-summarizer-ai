@@ -4,7 +4,7 @@ import subprocess
 import sys
 from pathlib import Path
 
-from summarize import SAMPLE, split_sentences, summarize, top_keywords
+from summarize import SAMPLE, split_sentences, summarize, text_stats, top_keywords
 
 PROJECT_ROOT = Path(__file__).parent.parent
 
@@ -23,6 +23,13 @@ def test_sentences_option_gives_exact_count():
 def test_summary_sentences_come_from_the_text():
     for sentence in summarize(SAMPLE, 3):
         assert sentence in split_sentences(SAMPLE)
+
+
+def test_text_stats_match_the_sample():
+    stats = text_stats(SAMPLE)
+    assert stats["sentences"] == len(split_sentences(SAMPLE))
+    assert stats["words"] == len(SAMPLE.split())
+    assert stats["words_per_sentence"] > 0
 
 
 def test_keywords_are_five_words_from_the_text():
