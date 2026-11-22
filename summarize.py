@@ -51,6 +51,17 @@ def summarize(text: str, num_sentences: int = 3) -> list[str]:
     return [sentences[i] for i in sorted(top)]  # back to reading order
 
 
+def text_stats(text: str) -> dict:
+    """Return simple size stats: words, sentences, words per sentence."""
+    sentences = split_sentences(text)
+    words = len(text.split())
+    return {
+        "words": words,
+        "sentences": len(sentences),
+        "words_per_sentence": round(words / len(sentences), 1) if sentences else 0.0,
+    }
+
+
 def top_keywords(text: str, num_keywords: int = 5) -> list[str]:
     if not text.strip():
         return []
@@ -73,6 +84,9 @@ def main() -> None:
     args = parser.parse_args()
 
     text = Path(args.file).read_text() if args.file else SAMPLE
+    stats = text_stats(text)
+    print(f"Stats: {stats['words']} words, {stats['sentences']} sentences "
+          f"(about {stats['words_per_sentence']} words per sentence)\n")
     print(f"SUMMARY ({args.sentences} sentences):\n")
     for s in summarize(text, args.sentences):
         print(f"- {s}")
