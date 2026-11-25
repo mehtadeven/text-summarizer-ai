@@ -1,4 +1,6 @@
 # Publishes the browser demo in web/ to GitHub Pages on every push to main.
+# Build and deploy are separate jobs (GitHub's recommended layout), so the
+# Pages artifact is fully registered before the deploy step looks for it.
 name: Deploy live demo
 
 on:
@@ -13,19 +15,24 @@ permissions:
 
 concurrency:
   group: pages
-  cancel-in-progress: true
+  cancel-in-progress: false
 
 jobs:
-  deploy:
+  build:
     runs-on: ubuntu-latest
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
     steps:
       - uses: actions/checkout@v4
       - uses: actions/configure-pages@v5
       - uses: actions/upload-pages-artifact@v3
         with:
           path: web
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
       - id: deployment
         uses: actions/deploy-pages@v4
