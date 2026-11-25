@@ -1,10 +1,14 @@
-![Text Summarizer AI](assets/banner.svg)
+[![Text Summarizer — try the live demo](assets/readme/banner.png)](https://mehtadeven.github.io/text-summarizer-ai/)
 
 # Text Summarizer AI
 
 [![Live demo](https://img.shields.io/badge/Live%20demo-try%20it%20in%20your%20browser-22d3ee?logo=googlechrome&logoColor=white)](https://mehtadeven.github.io/text-summarizer-ai/) ![Python](https://img.shields.io/badge/Python-3.10+-3776AB?logo=python&logoColor=white) ![NLP](https://img.shields.io/badge/Area-NLP-purple) ![scikit-learn](https://img.shields.io/badge/scikit--learn-ML-F7931E?logo=scikitlearn&logoColor=white) [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE) ![Stars](https://img.shields.io/github/stars/mehtadeven/text-summarizer-ai?style=social)
 
-**▶ [Try the live demo](https://mehtadeven.github.io/text-summarizer-ai/)** — it runs in your browser, nothing to install.
+<p align="center">
+  <a href="https://mehtadeven.github.io/text-summarizer-ai/"><b>▶ Try the live demo</b></a> &nbsp;·&nbsp;
+  <a href="#how-it-works">How it works</a> &nbsp;·&nbsp;
+  <a href="https://mehtadeven.github.io/">Portfolio</a>
+</p>
 
 An **extractive summarizer**: paste a long article and receive its most important sentences, verbatim and in reading order. No neural network, no API key — just well-applied TF-IDF.
 
@@ -38,6 +42,10 @@ Input: a 10-sentence article on learning AI. Output:
 *Real run of `python summarize.py` — the built-in 10-sentence article summarised to its 3 most important sentences, with stats and keywords.*
 
 ## Live demo
+
+[![Screenshot of the Text Summarizer live demo](assets/readme/demo.png)](https://mehtadeven.github.io/text-summarizer-ai/)
+
+**Design:** a *Swiss / brutalist* type theme — white page, heavy Archivo Black headlines, one orange-red accent, thick black rules and a sentence heat-map that shows exactly what the model scored.
 
 **[mehtadeven.github.io/text-summarizer-ai](https://mehtadeven.github.io/text-summarizer-ai/)** — paste any article, drag the length slider, and see the summary, the top keywords and every sentence's TF-IDF score. It is `summarize.py` ported to JavaScript in [`web/`](web/) and picks the same sentences as the Python version.
 

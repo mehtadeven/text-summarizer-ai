@@ -5,80 +5,84 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Text Summarizer AI — Live Demo · Deven Mehta</title>
   <meta name="description" content="Extractive text summarizer: TF-IDF scores every sentence and keeps the most important ones, word for word and in order. Runs in your browser.">
+  <meta name="theme-color" content="#ffffff">
   <meta property="og:title" content="Text Summarizer AI — Live Demo">
   <meta property="og:description" content="Paste an article, get its key sentences and keywords. TF-IDF sentence scoring, running in your browser.">
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📝</text></svg>">
+  <meta property="og:image" content="https://raw.githubusercontent.com/mehtadeven/text-summarizer-ai/main/assets/readme/banner.png">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' fill='%23ff4d00'/><text x='50' y='72' font-size='64' text-anchor='middle' font-family='Arial Black,Arial' fill='white'>T</text></svg>">
+  <link rel="preload" href="fonts/archivo-black-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <header class="topbar">
-    <a class="brand" href="https://mehtadeven.github.io/">Deven<span>.</span>Mehta</a>
+  <header class="bar">
+    <a class="brand" href="https://mehtadeven.github.io/">Deven Mehta</a>
     <nav>
-      <a href="https://mehtadeven.github.io/#projects">← All projects</a>
-      <a href="https://github.com/mehtadeven/text-summarizer-ai">Source code ↗</a>
+      <a href="https://mehtadeven.github.io/#projects">Projects</a>
+      <a href="https://github.com/mehtadeven/text-summarizer-ai">Code ↗</a>
     </nav>
   </header>
 
-  <main class="wrap">
-    <section class="hero">
-      <p class="eyebrow">Project 06 · NLP · Live demo</p>
-      <h1>Text <span class="grad">Summarizer</span></h1>
-      <p class="lede">Paste a long article. TF-IDF scores every sentence and keeps the most important ones —
-        word for word and in their original order, so nothing is made up.</p>
-      <div class="chips">
-        <span class="chip info">extractive summarisation</span>
-        <span class="chip info">TF-IDF sentence scoring</span>
-        <span class="chip">🔒 runs in your browser</span>
+  <main>
+    <section class="hero grid">
+      <div class="hero-num" aria-hidden="true">06</div>
+      <div class="hero-text">
+        <p class="tag">NLP — Live demo — Extractive</p>
+        <h1>Text<br>Summa&shy;rizer<span class="dot">.</span></h1>
+        <p class="lede">Paste a long article. TF-IDF scores every sentence and keeps the most important ones — <strong>word for word, in their original order.</strong> Nothing is made up.</p>
       </div>
     </section>
 
-    <section class="card">
-      <label for="text">Text to summarise</label>
+    <section class="block input">
+      <div class="block-head"><span>01</span><label for="text">Input text</label></div>
       <textarea id="text" spellcheck="false" placeholder="Paste an article, essay or report…"></textarea>
-      <div class="row">
-        <label for="count" class="inline">Summary length</label>
+      <div class="controls">
+        <label for="count" class="ctl-label">Length</label>
         <input id="count" type="range" min="1" max="10" value="3">
-        <span id="count-label" class="chip info">3 sentences</span>
+        <span id="count-label" class="count-label">3 sentences</span>
         <span class="spacer"></span>
-        <button id="sample" class="ghost" type="button">Load sample</button>
-        <button id="clear" class="ghost" type="button">Clear</button>
+        <button id="sample" type="button">Sample</button>
+        <button id="clear" type="button" class="invert">Clear</button>
       </div>
     </section>
 
-    <section class="card" aria-live="polite">
-      <div class="stat-row">
-        <div class="stat"><div class="lbl">Words</div><div class="num" id="stat-words">0</div></div>
-        <div class="stat"><div class="lbl">Sentences</div><div class="num" id="stat-sentences">0</div></div>
-        <div class="stat"><div class="lbl">Words / sentence</div><div class="num" id="stat-wps">0</div></div>
-        <div class="stat"><div class="lbl">Summary keeps</div><div class="num" id="stat-kept">–</div></div>
-      </div>
-      <h2 class="mt">Summary</h2>
-      <ol id="summary" class="summary"></ol>
-      <h2 class="mt">Top keywords</h2>
-      <div id="keywords" class="chips"></div>
+    <section class="stats" aria-live="polite">
+      <div><span class="n" id="stat-words">0</span><span class="l">Words</span></div>
+      <div><span class="n" id="stat-sentences">0</span><span class="l">Sentences</span></div>
+      <div><span class="n" id="stat-wps">0</span><span class="l">Words / sentence</span></div>
+      <div class="accent"><span class="n" id="stat-kept">–</span><span class="l">Summary keeps</span></div>
     </section>
 
-    <section class="card">
-      <h2>Inside the model</h2>
-      <p class="sub">Every sentence of your text. Brighter = higher TF-IDF score; underlined sentences made the summary. Hover for the exact score.</p>
+    <section class="block out grid-2">
+      <div>
+        <div class="block-head"><span>02</span><h2>Summary</h2></div>
+        <ol id="summary" class="summary"></ol>
+      </div>
+      <div>
+        <div class="block-head"><span>03</span><h2>Keywords</h2></div>
+        <div id="keywords" class="keywords"></div>
+      </div>
+    </section>
+
+    <section class="block">
+      <div class="block-head"><span>04</span><h2>Inside the model</h2></div>
+      <p class="sub">Every sentence of your text. Darker = higher TF-IDF score. <mark>Highlighted</mark> sentences made the summary. Hover for the exact score.</p>
       <p id="highlight" class="highlight"></p>
     </section>
 
-    <section class="card">
-      <h2>How it works</h2>
-      <p class="sub">The same steps as <code>summarize.py</code> — no neural network, fully explainable.</p>
+    <section class="block how">
+      <div class="block-head"><span>05</span><h2>How it works</h2></div>
       <ol class="steps">
         <li><b>Split</b> the text into sentences at . ! and ?</li>
-        <li><b>Weigh words</b> with TF-IDF: words that are frequent in one sentence but rare overall score high.</li>
+        <li><b>Weigh words</b> with TF-IDF — frequent in one sentence, rare overall, scores high.</li>
         <li><b>Score sentences</b> by adding up their word weights.</li>
         <li><b>Keep the top N</b> and put them back in reading order.</li>
       </ol>
-      <p class="note">Python version: <code>python summarize.py my.txt --sentences 5</code>. Both versions pick the same sentences.</p>
+      <p class="sub">Same steps as <code>summarize.py</code> — no neural network, fully explainable. Python: <code>python summarize.py my.txt --sentences 5</code></p>
     </section>
   </main>
 
-  <footer class="site">
-    <span>Built by <a href="https://mehtadeven.github.io/">Deven Mehta</a> · AI/ML builder · Ahmedabad</span>
+  <footer class="bar foot">
+    <span>Deven Mehta — Ahmedabad</span>
     <a href="https://github.com/mehtadeven/text-summarizer-ai">github.com/mehtadeven/text-summarizer-ai</a>
   </footer>
 
